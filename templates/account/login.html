@@ -1,0 +1,41 @@
+{% extends "account/base.html" %} {% load i18n %} {% load account socialaccount %} {% load crispy_forms_tags %} {% block head_title %}{% trans "Sign In" %}{% endblock %} {% block content %}
+
+<div class="container">
+    
+            <main>
+                <div class="container">
+                    
+                    <!--Grid row-->
+                    <div class="row wow fadeIn m-3">
+                        
+                        <div class="col-md-6  offset-md-3 pt-4">
+                            <h1 class="justify-content-center">{% trans "Sign In" %}</h1>
+<br>
+                                <form class="login" method="POST" action="{% url 'account_login' %}">
+                                    {% csrf_token %}
+                                     {{ form|crispy }}
+                                    {% if redirect_field_value %}
+                                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                    {% endif %}
+
+                                    <div class="justify-content-center">
+
+                                        <!-- <a class="btn btn-default" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> -->
+                                        <button class="btn btn-default" type="submit">{% trans "Sign In" %}</button>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                </form>
+                            </div>
+
+                            </div>
+                        </section>
+                    </div>
+            </main>
+</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+	
+
+
+<!-- Shopping Cart -->
+<div class="shopping-cart section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Shopping Summery -->
+					<table class="table shopping-summery">
+						<thead>
+							<tr class="main-hading">
+								<th>Transaction Id</th>
+								<th>Ordered Date</th>
+								<th class="text-center">Total Savings</th>
+								<th class="text-center">Total Amount</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							
+							{% for order_item in orders %}
+							<tr>
+								<td  class="image text-center" data-title="No">
+									 <a style="text-decoration: underline;" href="{% url 'order-detail' order_item.id  %}">
+									{{order_item.ref_code}}
+
+								</a>
+							
+							</td>
+								<td class="product-des" data-title="Description">{{order_item.order_date}}</td>
+								<td class="price" data-title="Price">${{order_item.get_total_order_savings}}</td>
+								<td class="price" data-title="Price">${{order_item.get_total}}</td>
+									
+							
+								
+							</tr>
+
+
+
+						
+							
+
+
+							{% empty %}
+
+							<tr>
+								<td colspan="5" class="text-center" ><b >Your Cart Is Empty</b></td>
+							  </tr>
+							  <!-- <tr>
+								<td colspan="5">
+									<div class="button5">
+										<a href="#" class="btn">Checkout</a>
+										<a href="#" class="btn">Continue shopping</a>
+									</div>
+								</td>
+							  </tr>
+ -->
+
+
+								{% endfor %}
+
+						
+						</tbody>
+					</table>
+					<!--/ End Shopping Summery -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<!-- Total Amount -->
+					<div class="total-amount">
+						<div class="row">
+							<div class="col-lg-8 col-md-5 col-12">
+								<div class="left">
+									<!-- <div class="coupon">
+										<form action="#" target="_blank">
+											<input name="Coupon" placeholder="Enter Your Coupon">
+											<button class="btn">Apply</button>
+										</form>
+									</div> -->
+									<!-- <div class="checkbox">
+										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Shipping (+10$)</label>
+									</div> -->
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<!--/ End Total Amount -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ End Shopping Cart -->
+		
+	
+	
+	{% endblock content %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'head.html' %}
+</head>
+
+{% block extra_styles %}
+
+{% endblock extra_styles %}
+
+
+<body class="js">
+
+<!--
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div> -->
+
+    {% include 'header.html' %}
+    {% include 'messages.html' %}
+    {% block content %}
+    {% endblock content %}
+
+    {% include 'footer.html' %}
+    {% include 'scripts.html' %}
+
+
+</body>
+</html>

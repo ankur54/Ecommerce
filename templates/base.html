@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {% include 'head.html' %}
+  {% block extra_head %}
+  
+  {% endblock extra_head %}
+</head>
+  
+  <body>
+
+    
+    
+    <div  class="container-fluid">
+      
+      
+     
+      
+      {% include 'navbar.html' %}
+    
+    {% include 'messages.html' %}
+    {% block content %} 
+    {% endblock content %}
+    
+    
+    {% block extra_body %}
+    {% endblock %}
+    
+    {%include 'scripts.html' %}
+    
+    {%include 'footer.html' %}
+    
+    {% block extra_scripts %}
+    
+    {% endblock extra_scripts %}
+    
+  </div>
+  </body>
+</html>
+
+

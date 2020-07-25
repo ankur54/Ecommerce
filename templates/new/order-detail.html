@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+	
+
+
+<!-- Shopping Cart -->
+<div class="shopping-cart section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Shopping Summery -->
+					<table class="table shopping-summery">
+						<thead>
+							<tr class="main-hading">
+								<th>Item</th>
+								<th>Quantity</th>
+								<th class="text-center">Price</th>
+								<th class="text-center">Total</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							
+							{% for order_item in order.items.all %}
+							<tr>
+								<td  class="image text-center" data-title="No">{{order_item.item.title}}</td>
+								<td class="price" data-title="Price">{{order_item.quantity}}</td>
+								<td class="product-des text-center" data-title="Description">${{order_item.item.price}}</td>
+								<td class="price" data-title="Price">${{order_item.get_total_item_price}}</td>
+									
+							
+								
+							</tr>
+
+
+
+						
+							
+
+
+							{% empty %}
+
+							<tr>
+								<td colspan="5" class="text-center" ><b >Your Cart Is Empty</b></td>
+							  </tr>
+							  <!-- <tr>
+								<td colspan="5">
+									<div class="button5">
+										<a href="#" class="btn">Checkout</a>
+										<a href="#" class="btn">Continue shopping</a>
+									</div>
+								</td>
+							  </tr>
+ -->
+
+
+								{% endfor %}
+
+						
+						</tbody>
+					</table>
+					<!--/ End Shopping Summery -->
+				</div>
+			</div>
+		
+		</div>
+	</div>
+	<!--/ End Shopping Cart -->
+		
+	
+	
+	{% endblock content %}

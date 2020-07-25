@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+    
+
+	<!-- Slider Area -->
+	<section class="hero-slider" style="background-image: url('https://www.pexels.com/photo/black-and-blue-sports-bike-40904/');">
+		<!-- Single Slider -->
+		<div class="single-slider"  style="background-image: url('https://www.pexels.com/photo/black-and-blue-sports-bike-40904/');">
+			<div class="container">
+				<div class="row no-gutters"  style="background-image: url('https://www.pexels.com/photo/black-and-blue-sports-bike-40904/');">
+					<div class="col-lg-9 offset-lg-3 col-12">
+						<div class="text-inner">
+							<div class="row">
+								<div class="col-lg-7 col-12">
+									<div class="hero-text">
+										<h1><span>UP TO 20% OFF </span>Bikes For Men</h1>
+										<p>Life is like riding a bicycle- in order to keep your balance, you must keep moving</p>
+										<div class="button">
+											<a href="{% url 'shop'%}" class="btn">Shop Now!</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Single Slider -->
+	</section>
+	<!--/ End Slider Area -->
+	
+	<!-- Start Small Banner  -->
+	<section class="small-banner section">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- Single Banner  -->
+				<div class="col-lg-4 col-md-6 col-12">
+					<div class="single-banner">
+						<img style="height:370px !important; width:600px !important;" src="{% static 'images/orange-and-black-bmw-motorcycle-before-concrete-wall-104842.jpg' %}" alt="#">
+
+						<div class="content">
+							<p>Trending</p>
+							<h3>Womens collection</h3>
+							<a href="{% url 'shop'%}">Discover Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+				<!-- Single Banner  -->
+				<div class="col-lg-4 col-md-6 col-12">
+					<div class="single-banner">
+						<img style="height:370px !important; width:600px !important;" src="{% static 'images/enfield.jpg' %}" alt="#">
+						<div class="content">
+							<p>Whats New?</p>
+							<h3>Kids Bikes</h3>
+							<a href="{% url 'shop'%}">Shop Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+				<!-- Single Banner  -->
+				<div class="col-lg-4 col-12">
+					<div class="single-banner tab-height">
+						<img style="height:370px !important; width:600px !important;" src="{% static 'images/motorcycle-258092.jpg' %}" alt="#">
+
+						<div class="content">
+							<p>Flash Sale</p>
+							<h3>Mid Season <br> Up to <span>40%</span> Off</h3>
+							<a href="{% url 'shop'%}">Discover Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+			</div>
+		</div>
+	</section>
+	<!-- End Small Banner -->
+
+
+
+		<!-- Start Most Popular -->
+		<div class="product-area most-popular section">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="section-title">
+							<h2>Trending</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="owl-carousel popular-slider">
+							<!-- Start Single Product -->
+							<div class="single-product">
+								<div class="product-img">
+									<a href="product-details.html">
+										<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+										<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+										<span class="out-of-stock">Hot</span>
+									</a>
+									<div class="button-head">
+										<div class="product-action">
+											<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+											<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+											<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+										</div>
+										<div class="product-action-2">
+											<a title="Add to cart" href="#">Add to cart</a>
+										</div>
+									</div>
+								</div>
+								<div class="product-content">
+									<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+									<div class="product-price">
+										<span class="old">$60.00</span>
+										<span>$50.00</span>
+									</div>
+								</div>
+							</div>
+							<!-- End Single Product -->
+							<!-- Start Single Product -->
+							<div class="single-product">
+								<div class="product-img">
+									<a href="product-details.html">
+										<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+										<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+									</a>
+									<div class="button-head">
+										<div class="product-action">
+											<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+											<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+											<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+										</div>
+										<div class="product-action-2">
+											<a title="Add to cart" href="#">Add to cart</a>
+										</div>
+									</div>
+								</div>
+								<div class="product-content">
+									<h3><a href="product-details.html">Women Hot Collection</a></h3>
+									<div class="product-price">
+										<span>$50.00</span>
+									</div>
+								</div>
+							</div>
+							<!-- End Single Product -->
+							<!-- Start Single Product -->
+							<div class="single-product">
+								<div class="product-img">
+									<a href="product-details.html">
+										<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+										<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+										<span class="new">New</span>
+									</a>
+									<div class="button-head">
+										<div class="product-action">
+											<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+											<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+											<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+										</div>
+										<div class="product-action-2">
+											<a title="Add to cart" href="#">Add to cart</a>
+										</div>
+									</div>
+								</div>
+								<div class="product-content">
+									<h3><a href="product-details.html">Awesome Pink Show</a></h3>
+									<div class="product-price">
+										<span>$50.00</span>
+									</div>
+								</div>
+							</div>
+							<!-- End Single Product -->
+							<!-- Start Single Product -->
+							<div class="single-product">
+								<div class="product-img">
+									<a href="product-details.html">
+										<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+										<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+									</a>
+									<div class="button-head">
+										<div class="product-action">
+											<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+											<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+											<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+										</div>
+										<div class="product-action-2">
+											<a title="Add to cart" href="#">Add to cart</a>
+										</div>
+									</div>
+								</div>
+								<div class="product-content">
+									<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+									<div class="product-price">
+										<span>$50.00</span>
+									</div>
+								</div>
+							</div>
+							<!-- End Single Product -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Most Popular Area -->
+		
+	
+<br>    
+<br>    
+<br>    
+<br>    
+
+	
+
+
+
+{% endblock content %}
+    

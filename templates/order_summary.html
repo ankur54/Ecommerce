@@ -1,0 +1,103 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+
+
+
+{% block content %}
+
+
+
+
+  <div class="container">
+    <!--Navbar-->
+   
+
+    
+
+  <div class="table-responsive text-nowrap mt-6">
+<h3>Order Summary</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><b class="text-center">#</b></th>
+          <th scope="col"><b class="text-center">Item</b></th>
+          <th scope="col"><b class="text-center">Price</b></th>
+          <th scope="col text-center" ><b class="text-center">Quantity</b></th>
+          <th scope="col"><b class="text-center">Total Item Price</b></th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        
+        {% for order_item in object.items.all %}
+          
+          
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td> <a href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.title }} </a></td>
+          <td>
+            {% if order_item.item.discount_price %}
+            ${{order_item.item.discount_price}}
+            {% else%} ${{order_item.item.price}}
+            {% endif %}
+          </td>
+          <td> 
+            <a href="{{order_item.item.get_remove_one_from_cart_url}}" class="mr-2"> <i class="fas fa-minus-square"></i> </a>{{order_item.quantity}} <a href="{{ order_item.item.get_add_one_to_cart_url }}" class="ml-2"> <i class="fas fa-plus-square"></i></a>
+          <td>
+          {% if order_item.item.discount_price %}
+            ${{order_item.get_total_item_discount_price}}  
+             <span class="badge badge-primary">
+            Savings :  ${{order_item.get_total_savings}}
+          </span>
+          {% else%}
+            ${{order_item.get_total_item_price}}
+          {% endif %}
+
+          <a href="{{order_item.item.get_whole_item_from_cart_url}}"> <i style="color: red;"  class="far fa-trash-alt float-right" ></i></a>
+          </td>
+        </tr>
+       
+        {% empty %}
+        <tr>
+          <td colspan="5" class="text-center" ><b >Your Cart Is Empty</b></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <a href="/" class="btn btn-primary float-right">Start Shopping</a>
+          </td>
+        </tr>
+
+
+        {% endfor %}
+
+        
+        {% if object.get_total %}
+          
+          
+
+        <tr>
+          <td colspan="4"><b>Order Total</b></td>
+          <td ><b>${{object.get_total}}<b></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="5">
+                      
+                      <a href="{% url 'checkout' %}" class="btn btn-warning float-right ml-2">Proceed to Checkout</a>
+                      <a href="/" class="btn btn-primary float-right">Continue Shopping</a>
+                     
+                    </td>
+                  </tr>
+                  {% endif %}
+        
+      
+      </tbody>
+    </table>
+  
+  </div>
+
+
+  </div>
+
+{% endblock content %}

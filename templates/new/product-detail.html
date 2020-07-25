@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+		
+		{% block content %}
+			
+			
+
+
+
+
+		<!-- Breadcrumbs -->
+		<!-- <div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="bread-inner">
+							<ul class="bread-list">
+								<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+								<li class="active"><a href="blog-single.html">Shop Grid</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- End Breadcrumbs -->
+		
+		<!-- Product Style -->
+		<section class="product-area shop-sidebar shop section">
+			<div class="container">
+				<div class="row">
+					<!-- <div class="col-lg-3 col-md-4 col-12"> -->
+						<!-- <div class="shop-sidebar">
+								<div class="single-widget category" style="height:410px;">
+									<h3 class="title">Categories</h3>
+									<ul class="categor-list">
+										<li><a href="#">T-shirts</a></li>
+										<li><a href="#">jacket</a></li>
+										<li><a href="#">jeans</a></li>
+										<li><a href="#">sweatshirts</a></li>
+										<li><a href="#">trousers</a></li>
+										<li><a href="#">kitwears</a></li>
+										<li><a href="#">accessories</a></li>
+									</ul>
+								</div>
+							
+							
+						</div> -->
+					<!-- </div> -->
+					<div class="col-lg-12 col-md-8 col-12">
+					
+
+
+						<div class="row">
+							
+
+							
+						
+								
+								
+
+
+							<div class="col-lg-6 col-md-12 col-12">
+								<div class="single-product" style="margin-top:0;">
+									<div class="product-img">
+										<a href="{{object.get_absolute_url}}">
+											<img class="default-img" src="{{object.image.url}}" alt="#">
+											<img class="hover-img" src="{{object.image.url}}" alt="#">
+										</a>
+										<!-- <div class="button-head"> -->
+											<!-- <div class="product-action" >
+												<a href="{{item.get_add_to_cart_url_from_shop}}"><i class="ti-shopping-cart"></i><span>Add to Cart</span></a>
+												<a href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+												<a  href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+											</div> -->
+											<!-- <div class="product-action-2"> 
+												<a title="Add to cart" href="#"></a>
+											</div>  -->
+										<!-- </div> -->
+									</div>
+									<!-- <div class="product-content">
+										<h3><a href="product-details.html">{{item.title}}</a></h3>
+										<div class="product-price">
+										
+										{% if item.discount_price %}
+										<span style="text-decoration:line-through;">${{item.price}}</span>	
+										<span>${{item.discount_price}}</span>
+											{% else %}
+										<span>${{item.price}}</span>
+
+										{% endif %}
+										</div>
+									</div> -->
+								</div>
+							</div>
+
+                            <div class="col-lg-6 col-md-12 col-12">
+
+
+
+                                    <h3>{{object.title}}</h3>
+
+								
+
+									<div class="row mt-5 text-center">
+									<div class="col-md-5">
+										
+										<h5 class="badge-pill badge-dark">{{object.category}}</h5> 
+									</div>
+									<div class="col-md-3">
+										
+										<h5 style="background-color:{{object.color}};" class="badge-pill badge-dark">{{object.color}}</h5> 
+									</div>
+									</div>
+
+									<div class="row mt-5">
+										<div class="col-md-3 offset-md-3">
+										<h2>${{object.price}}</h2>
+										</div>
+									</div>
+									<div class="row mt-5">
+										<div class="col-md-4">
+											<div class="button5">
+												<a  href="{{object.get_add_to_cart_url_from_shop}}" ><i class="ti-shopping-cart" style="font-size: 50px;"></i>
+													
+												</a>
+											</div>
+										</div>
+											<div class="col-md-4">
+											<div class="button5">
+												<a  href="{{object.get_add_to_wishlist_url}}" ><i class="ti-heart" style="font-size:40px;"></i></a>
+											</div>
+										</div>
+											<div class="col-md-4">
+											<div class="button5">
+												<a  href="{{object.get_add_to_compare_url}}" ><i class="ti-bar-chart-alt" style="font-size:40px;"></i></a>
+											</div>
+										</div>
+									</div>
+
+
+									<!-- get_add_to_cart_url_from_shop -->
+<!-- get_add_to_wishlist_url -->
+<!-- 
+									<div class="row mt-5">
+										<span class="badge badge-primary">Color</span>: 
+										</div> -->
+	
+
+							</div>
+
+						
+
+							
+
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End Product Style 1  -->	
+
+	
+		
+		
+
+
+		{% endblock content %}

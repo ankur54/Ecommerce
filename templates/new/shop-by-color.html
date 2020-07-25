@@ -1,0 +1,215 @@
+{% extends 'base.html' %} {% block extra_styles %}
+
+<!-- <style>
+
+ul.pagination li{
+	font-size: 25px !important;
+	color : white !important;
+	background-color: black !important;
+}
+
+
+ul.pagination  {
+	background-color: black;
+}
+
+</style> -->
+
+<style>
+    .pagination {
+        display: inline !important;
+    }
+
+    .pagination a {
+        color: black !important ;
+        float: left !important;
+        padding: 8px 16px !important;
+        text-decoration: none !important;
+    }
+
+    .pagination a.active {
+        background-color: black !important;
+        color: white !important;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+</style>
+
+{% endblock extra_styles %} {% block content %}
+
+<!-- Breadcrumbs -->
+<!-- <div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="bread-inner">
+							<ul class="bread-list">
+								<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+								<li class="active"><a href="blog-single.html">Shop Grid</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+<!-- End Breadcrumbs -->
+
+<!-- Product Style -->
+<section class="product-area shop-sidebar shop section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="shop-sidebar">
+                    <!-- Single Widget -->
+                    <div class="single-widget category">
+                        <h3 class="title">Categories</h3>
+                        <ul class="categor-list">
+                            {% for category in categories %}
+                            <li><a href="{% url 'shop-by-category' category.name %}">{{category.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+					<!--/ End Single Widget -->
+
+					 <!-- Single Widget -->
+					 <div class="single-widget category">
+                        <h3 class="title">Color</h3>
+                        <ul class="categor-list">
+                            {% for color in colors %}
+                            <li><a href="{% url 'shop-by-color' color.label %}">{{color.label}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!--/ End Single Widget -->
+					
+
+
+                    <!-- Shop By Price -->
+                    <div class="single-widget range">
+                        <h3 class="title">Shop by Price</h3>
+                        <div class="price-filter">
+                            <!-- <div class="price-filter-inner">
+                                <div id="slider-range"></div>
+                                <div class="price_slider_amount">
+                                    <div class="label-input"><span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price" /></div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <ul class="check-box-list">
+                            <li>
+                                <label class="checkbox-inline" for="1"><a href={% url 'shop-by-price' 1 %}>$100 - $500</a></label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline" for="1"><a href={% url 'shop-by-price' 2 %}>$500 - $1000</a></label>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <!--/ End Shop By Price -->
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Shop Top -->
+
+                        <form method="GET" action="{% url 'shop' %}">
+                            <div class="shop-top">
+                                <div class="shop-shorter">
+                                    <div class="single-shorter">
+                                        <label>Show :</label>
+
+                                        <select name="number" onchange="this.form.submit()">
+                                            <option selected="selected">5</option>
+                                            <option>10</option>
+                                            <option>15</option>
+                                            <option>20</option>
+                                        </select>
+                                    </div>
+                                    <div class="single-shorter">
+                                        <label>Sort By :</label>
+                                        <select name="sort-by" onchange="this.form.submit()">
+                                            <option selected="selected">Name</option>
+                                            <option>Price</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!--/ End Shop Top -->
+                    </div>
+                </div>
+                <div class="row">
+                    {% for item in items %}
+
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-product">
+                            <div class="product-img" style="max-height: 200px;">
+                                <a href="{{ item.get_absolute_url }}">
+                                    <img style="height: 200px;" class="img-thumbnail" src="{{item.image.url}}" alt="#" />
+                                    <!-- <img class="hover-img" src="https://via.placeholder.com/270x270" alt="#"> -->
+                                </a>
+                                <div class="button-head">
+                                    <div class="product-action">
+                                        <a href="{{item.get_add_to_cart_url_from_shop}}"><i class="ti-shopping-cart"></i><span>Add to Cart</span></a>
+                                        <!-- <a data-toggle="modal" data-target="#exampleModal" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> -->
+                                        <a href="{{ item.get_add_to_wishlist_url }}"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
+                                        <a href="{{ item.get_add_to_compare_url }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                    </div>
+                                    <div class="product-action-2">
+                                        <a title="Add to cart" href="#"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3><a href="product-details.html">{{item.title}}</a></h3>
+                                <div class="product-price">
+                                    {% if item.discount_price %}
+                                    <span style="text-decoration: line-through;">${{item.price}}</span>
+                                    <span>${{item.discount_price}}</span>
+                                    {% else %}
+                                    <span>${{item.price}}</span>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+		<br>
+		<br>
+        <div class="row">
+            <div class="col-md-6 offset-md-5 text-center">
+                {% if items.has_other_pages %}
+                <div class="pagination text-center">
+                    {% if items.has_previous %}
+                    <a href="?page={{ items.previous_page_number }}">&laquo;</a>
+                    {% else %}
+                    <a>&laquo;</a>
+                    {% endif %} {% for i in items.paginator.page_range %} {% if items.number == i %}
+                    <a class="active">{{ i }}</a>
+                    {% else %}
+                    <a href="?page={{ i }}">{{ i }}</a>
+                    {% endif %} {% endfor %} {% if items.has_next %}
+                    <a href="?page={{ items.next_page_number }}">&raquo;</a>
+                    {% else %}
+                    <a>&raquo;</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Product Style 1  -->
+
+{% endblock content %}

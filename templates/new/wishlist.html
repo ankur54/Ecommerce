@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+	
+
+
+<!-- Shopping Cart -->
+<div class="shopping-cart section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Shopping Summery -->
+					<table class="table shopping-summery">
+						<thead>
+							<tr class="main-hading">
+								<th>PRODUCT</th>
+								<th>NAME</th>
+								<th class="text-center">UNIT PRICE</th>
+								<th class="text-center"></th>
+								<th class="text-center"></th>
+								<th class="text-center"></th> 
+								<!-- <i class="ti-trash remove-icon"></i> -->
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							{% for wishlist_item in object.items.all %}
+							<tr>
+								<td width="100"  height="100" class="image" data-title="No"><img src="{{wishlist_item.image.url}}" alt="#"></td>
+								<td class="product-des" data-title="Description">
+									<p class="product-name"><a href="{{ wishlist_item.item.get_absolute_url }}">{{ wishlist_item.title }}</a></p>
+								</td>
+								<td class="price" data-title="Price"><span>
+								         {% if wishlist_item.discount_price %}
+            ${{wishlist_item.discount_price}}  
+           
+          {% else%}
+            ${{wishlist_item.price}}
+          {% endif %}
+								
+								
+								
+								</span></td>
+								<td class="qty" data-title="Qty"><!-- Input Order -->
+									<!-- <div class="input-group">
+										<div class="button minus">
+											<a class="btn btn-primary minus" href="{{ wishlist_item.item.get_remove_one_from_cart_url }}" style="padding-left:25px;"> <i class="ti-minus"></i></a>
+										</div>
+										<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="100" value="{{wishlist_item.quantity}}" readonly>
+										<div class="button plus">
+											<a class="btn btn-primary" href="{{ wishlist_item.item.get_add_one_to_cart_url }}"> <i class="ti-plus"></i></a>
+										</div>
+                                    </div> -->
+                                    
+                                    <div class="button5">
+										<a href="{{wishlist_item.get_add_one_to_cart_url_from_wishlist}}" style="color: #fff !important;" class="btn">ADD TO CART</a>
+									</div>
+
+								</td>
+								<td class="total-amount" data-title="Total"></td>
+								<td class="action" data-title="Remove">
+								<a href="{{wishlist_item.item.get_whole_item_from_cart_url}}"> <i class="ti-trash remove-icon"></i></a>
+								</td>
+							</tr>
+
+
+
+						
+							
+
+
+							{% empty %}
+
+							<tr>
+								<td colspan="5" class="text-center" ><b >Your WishList Is Empty</b></td>
+							  </tr>
+							  <!-- <tr>
+								<td colspan="5">
+									<div class="button5">
+										<a href="#" class="btn">Checkout</a>
+										<a href="#" class="btn">Continue shopping</a>
+									</div>
+								</td>
+							  </tr>
+ -->
+
+
+								{% endfor %}
+
+						
+						</tbody>
+					</table>
+					<!--/ End Shopping Summery -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<!-- Total Amount -->
+					<div class="total-amount">
+						<div class="row">
+							<div class="col-lg-8 col-md-5 col-12">
+								<div class="left">
+									<!-- <div class="coupon">
+										<form action="#" target="_blank">
+											<input name="Coupon" placeholder="Enter Your Coupon">
+											<button class="btn">Apply</button>
+										</form>
+									</div> -->
+									<!-- <div class="checkbox">
+										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Shipping (+10$)</label>
+									</div> -->
+								</div>
+							</div>
+                            
+                           
+
+						</div>
+					</div>
+					<!--/ End Total Amount -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ End Shopping Cart -->
+		
+	
+	
+	{% endblock content %}

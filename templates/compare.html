@@ -1,0 +1,130 @@
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
+
+<style>
+    table td {
+        text-align: center;
+    }
+
+    table th {
+        text-align: center;
+    }
+
+    .img-column {
+        height: 200px !important;
+    }
+
+    #compare-table {
+        height: 800px !important;
+        width: 100%;
+    }
+</style>
+
+{% endblock extra_styles %} {% block content %}
+
+<!--Main layout-->
+<main>
+    <div class="container">
+        <div class="row mt-5 mb-5 pt-5 pb-5">
+            <div class="col-md-10">
+                <!-- <div class="row">
+
+            <div class="col-md-4">
+                <ul>
+                    <li>Item</li>
+                    <li>Price</li>
+                </ul>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+
+
+
+
+        </div> -->
+                <div>
+                    <table class="table-bordered"  id="compare-table">
+                        <tbody style="border: 2px solid black !important;">
+                            <tr>
+                                <th style="border: 1px solid black;">Product</th>
+
+                                {% for item in compare_list.items.all %}
+
+                                <td style="height: 100px; background-color: #fff; " class="img-column border" >
+                                    <img src="{{item.image.url}}" alt="{{item.title}}" />
+                                </td>
+                                {% endfor %}
+                                <!-- <td style="height: 100px; background-color: #fff;">2</td> -->
+                            </tr>
+                            <tr>
+                                <th style="font-size: 20px; border: 1px solid black;">Name</th>
+
+                                {% for item in compare_list.items.all %}
+
+                                <td style="width: 100px;">
+                                    <strong>
+
+                                        {{item.title}}
+                                    </strong>
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th style="font-size: 20px; border: 1px solid black;">Price</th>
+                                {% for item in compare_list.items.all %}
+
+                                <td style="width: 100px;">
+                                    <strong>
+
+                                        ${{item.price}}</td>
+                                    </strong>
+                                {% endfor %}
+                            </tr>
+
+                            <tr>
+                                <th style="font-size: 20px; border: 1px solid black;">Category</th>
+                                {% for item in compare_list.items.all %}
+
+                                <td style="width: 100px;">{{item.category}}</td>
+                                {% endfor %}
+                            </tr>
+
+
+                            <tr>
+                                <th style="font-size: 20px; border: 1px solid black;">Color</th>
+                                {% for item in compare_list.items.all %}
+
+                                <td class="badge-pill " style="width: 100px; "> 
+                                    <div   >
+
+                                        <span  class="badge-pill pl-2" style=" width:100px; background-color:{{item.color}}; color:#fff ;">
+                                            
+                                            {{item.color}}</td>
+                                        </h6>
+                                    </div>
+                                {% endfor %}
+                            </tr>
+
+                            <tr>
+                                <td style="width: 100px;"></td>
+                                {% for item in compare_list.items.all %}
+
+                                <td style="width: 100px;">
+                                    <a href="{{item.get_remove_from_compare_url}}" ><i class="fa fa-trash" style="font-size: 30px;" aria-hidden="true"></i></a>
+                                </td>
+
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br />
+                    <div style="text-align: center;">
+                        <a href="{% url 'shop' %}" class="btn" style="color: white;">Add items to Compare</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--Main layout-->
+{% endblock content %}
