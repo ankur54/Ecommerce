@@ -161,16 +161,25 @@ def shop_grid_new(request):
 
 
     if 'upper' in request.GET :
-        upper_val=int(request.GET.get('upper'))
+        try:
+            upper_val=int(request.GET.get('upper'))
+        except:
+            upper_val=100000
     else:
         upper_val=100000
 
     if 'lower' in request.GET :
-        lower_val=int(request.GET.get('lower'))
+        try:
+            lower_val=int(request.GET.get('lower'))
+        except:
+            lower_val=0
     else:
         lower_val=0
     
-    items = Item.objects.filter(price__gte=lower_val,price__lte=upper_val)
+    # items = Item.objects.filter(price__gte=lower_val,price__lte=upper_val)
+    items = items.filter(price__gte=lower_val,price__lte=upper_val)
+
+
     
 
 
@@ -788,10 +797,12 @@ def add_to_wishlist(request, slug):
 
     if item in wishlist.items.all():
         print('item already present')
+        messages.warning(request, 'Item added to wishlist', extra_tags='alert')
     else:
         wishlist.items.add(item)
         wishlist.save()
-    return redirect(item)
+        messages.warning(request, 'Item added to wishlist', extra_tags='alert')
+    return redirect('shop')
 
 
 def add_one_item_to_cart(request, slug):

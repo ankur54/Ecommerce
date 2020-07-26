@@ -50,7 +50,10 @@
                                 {% for item in compare_list.items.all %}
 
                                 <td style="height: 100px; background-color: #fff; " class="img-column border" >
+                                    <a href="{{ item.get_absolute_url }}">
+
                                     <img src="{{item.image.url}}" alt="{{item.title}}" />
+                                    </a>
                                 </td>
                                 {% endfor %}
                                 <!-- <td style="height: 100px; background-color: #fff;">2</td> -->
@@ -62,8 +65,9 @@
 
                                 <td style="width: 100px;">
                                     <strong>
-
-                                        {{item.title}}
+                                        <a href="{{ item.get_absolute_url }}">
+                                            {{item.title}}
+                                        </a>
                                     </strong>
                                 </td>
                                 {% endfor %}

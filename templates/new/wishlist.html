@@ -29,7 +29,7 @@
 							
 							{% for wishlist_item in object.items.all %}
 							<tr>
-								<td width="100"  height="100" class="image" data-title="No">
+								<td width="150"  height="150" class="image" data-title="No">
 									<a href="{{ wishlist_item.get_absolute_url  }}">
 
 										<img class="img-thumbnail" src="{{wishlist_item.image.url}}" alt="#">
