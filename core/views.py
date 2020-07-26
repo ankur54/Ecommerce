@@ -58,12 +58,10 @@ def complete_order(request):
 
 def shop_grid_new(request):
     print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-    # print(request.method)
-    # print(request.GET)
-    print(request.GET.getlist('category'))
+  
 
     if request.GET.get('number') is None:
-        num = 2
+        num = 10
     else:
         num = int(request.GET.get('number'))
     
@@ -73,28 +71,28 @@ def shop_grid_new(request):
         sort_by = 'price'
     elif request.GET.get('sort-by') == 'Name':
         sort_by = 'title'
-
-    if request.method == 'GET' and 'color' in request.GET and 'category' in request.GET:
-        # print('color present')
+    
+    
+    if 'color' in request.GET or 'category' not in request.GET:
+        filtered_colors = tuple( request.GET.getlist('color'))
+        filtered_categories=()
+        print('filtered_colors = ', filtered_colors)
+        items = Item.objects.filter(color__color_name__in = filtered_colors).order_by(sort_by)
+    
+    elif 'color' in request.GET and 'category' in request.GET:
+        print('83')
         filtered_colors = tuple( request.GET.getlist('color'))
         filtered_categories = tuple( request.GET.getlist('category'))
         print('filtered_categories = ', filtered_categories)
+        print('filtered_colors = ', filtered_colors)
         items = Item.objects.filter(color__color_name__in = filtered_colors).filter(category__name__in = filtered_categories).order_by(sort_by)
-    
-    # elif request.method == 'GET' and 'color' in request.GET and 'category' not in request.GET:
-    #     # print('color present')
-    #     filtered_colors = tuple( request.GET.getlist('color'))
-    #     filtered_categories = ()
-    #     print('filtered_categories = ', filtered_categories)
-    #     items = Item.objects.filter(color__color_name__in = filtered_colors).filter(category__name__in = filtered_categories).order_by(sort_by)
-    
     else:
-        filtered_colors = ()
-        filtered_categories = ()
         items = Item.objects.all().order_by(sort_by)
-        # print('color not present')
+        filtered_categories = ()
+        filtered_colors = ()
 
     
+ 
 
     
 
@@ -139,7 +137,7 @@ def shop_by_color(request, value):
     categories = Category.objects.all()
     page = request.GET.get('page', 1)
 
-    colors = Item.objects.values('label').distinct()
+    colors = Item.objects.values('color.color_name').distinct()
     print('colors = ', colors)
 
 
@@ -289,7 +287,7 @@ def search_products(request):
     search = request.GET.get('search')
     results = Item.objects.filter(title__icontains=search)
     categories = Category.objects.all()
-    colors = Item.objects.values('label').distinct()
+    colors = Item.objects.values('color__color_name').distinct()
     context = {'items': results, 'categories': categories, 'colors': colors}
     return render(request, 'search-results.html', context)
 
@@ -802,6 +800,7 @@ def remove_whole_item_from_cart(request, slug):
     return redirect('order-summary')
 
 
+
 class RequestRefundView(View):
     def get(self, *args, **kwargs):
         form = RequestRefundForm()
@@ -828,3 +827,21 @@ class RequestRefundView(View):
         except ObjectDoesNotExist:
             print('order doesnot exists')
             return redirect('/')
+
+
+
+def remove_whole_item_from_wishlist(request, slug):
+    item = get_object_or_404(Item, slug=slug)
+    print(item)
+    qs = WishList.objects.filter(user=request.user)
+    wishlist = qs[0]
+    items = wishlist.items.all()
+    # items.delete()
+    # items.save()
+    wishlist.items.remove(item)
+    print(wishlist)
+    print(wishlist.items)
+    print(items)
+    # wishlist_item = wishlist.items.filter(item=item)
+    # wishlist_item.delete()
+    return redirect('wishlist')

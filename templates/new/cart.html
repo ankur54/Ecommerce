@@ -29,18 +29,16 @@
 							
 							{% for order_item in object.items.all %}
 							<tr>
-								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
+								<td class="image" data-title="No"><img src="{{ order_item.item.image.url }}" alt="#"></td>
 								<td class="product-des" data-title="Description">
 									<p class="product-name"><a href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.title }}</a></p>
 								</td>
 								<td class="price" data-title="Price"><span>
 				{% if order_item.item.discount_price %}
-            	${{order_item.get_total_item_discount_price}}  
-             <span class="badge badge-dark">
-            Savings :  ${{order_item.get_total_savings}}
-          </span>
+            	${{order_item.item.discount_price}}  
+            
           {% else%}
-            ${{order_item.get_total_item_price}}
+            ${{order_item.item.price}}
           {% endif %}
 								
 								
@@ -57,7 +55,30 @@
 										</div>
 									</div>
 								</td>
-								<td class="total-amount" data-title="Total">
+
+
+
+
+
+
+
+								<td class="price" data-title="Price"><span>
+									{% if order_item.item.discount_price %}
+									${{order_item.get_total_item_discount_price}}  
+							
+							  {% else%}
+								${{order_item.get_total_item_price}}
+							  {% endif %}
+													
+													
+													
+													</span></td>
+
+
+
+
+								
+								<!-- <td class="total-amount" data-title="Total">
 								
 								{% if order_item.item.discount_price %}
 									
@@ -65,7 +86,7 @@
 								{% endif %}
 									
 								
-								</td>
+								</td> -->
 								<td class="action" data-title="Remove">
 								<a href="{{order_item.item.get_whole_item_from_cart_url}}"> <i class="ti-trash remove-icon"></i></a>
 								</td>
@@ -122,9 +143,9 @@
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
-										<li>Cart Subtotal<span>$330.00</span></li>
+										<!-- <li>Cart Subtotal<span>$330.00</span></li> -->
 										<!-- <li>Shipping<span>Free</span></li> -->
-										<li>You Save<span>${{object.get_total_order_savings}}</span></li>
+										<!-- <li>You Save<span>${{object.get_total_order_savings}}</span></li> -->
 										<li class="last">
 										<strong>
 										You Pay<span>${{object.get_total}}</span>

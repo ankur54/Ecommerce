@@ -176,6 +176,8 @@ class Item(models.Model):
     def get_add_to_wishlist_url(self):
         return reverse('add-to-wishlist', kwargs={"slug": self.slug})
 
+    
+
     def get_add_to_compare_url(self):
         return reverse('add-to-compare', kwargs={"slug": self.slug})
 
@@ -197,8 +199,11 @@ class Item(models.Model):
     def get_remove_one_from_cart_url(self):
         return reverse('remove-one-from-cart', kwargs={"slug": self.slug})
 
-    def get_whole_item_from_cart_url(self):
-        return reverse('remove-whole-item-from-cart', kwargs={"slug": self.slug})
+    # def get_remove_from_wishlist_url(self):
+    #     return reverse('remove-whole-item-from-cart', kwargs={"slug": self.slug})
+
+    def get_remove_from_wishlist_url(self):
+        return reverse('remove_whole_item_from_wishlist', kwargs={"slug": self.slug})
 
 
 class OrderItem(models.Model):

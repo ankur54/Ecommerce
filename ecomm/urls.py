@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from core.views import (AddCoupon, CheckOut, ItemDetailView, ItemListView,complete_order,my_order_detail,
+from core.views import (AddCoupon, CheckOut, ItemDetailView, ItemListView,complete_order,my_order_detail,remove_whole_item_from_wishlist,
                         OrderSummary, PaymentView, RemoveCoupon, shop_grid_new,shop_by_category,my_orders,
                         RequestRefundView, add_one_item_to_cart, add_to_cart, add_to_compare, get_results,shop_by_price,
                         home, products, remove_coupon, remove_from_cart, search_products,shop_by_color,
@@ -59,6 +59,8 @@ urlpatterns = [
          remove_one_from_cart, name='remove-one-from-cart'),
     path('remove-whole-item-from-cart/<slug>/',
          remove_whole_item_from_cart, name='remove-whole-item-from-cart'),
+    path('remove-whole-item-from-wishlist/<slug>/',
+         remove_whole_item_from_wishlist, name='remove_whole_item_from_wishlist'),
 ]
 
 

@@ -4,7 +4,11 @@ from core.models import Address, Payment, WishList, Message
 
 from .models import Item, Order, OrderItem, Coupon, Refund, UserProfile, Category, CompareList, Color
 
-# Register your models here.
+from django.contrib.sites.models import Site
+
+
+
+admin.site.unregister(Site)
 
 
 def make_refund_accepted(modeladmin, request, queryset):
@@ -69,7 +73,7 @@ admin.site.register(Address, AddressAdmin)
 # admin.site.register(Coupon)
 # admin.site.register(Refund)
 admin.site.register(UserProfile)
-# admin.site.register(WishList)
+admin.site.register(WishList)
 admin.site.register(Category)
 # admin.site.register(CompareList)
 admin.site.register(Message)
