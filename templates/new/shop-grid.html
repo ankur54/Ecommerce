@@ -127,11 +127,27 @@ ul.pagination  {
                         </div>
                         <ul class="check-box-list">
                             <li>
-                                <label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox" />$0 - $500</label>
+                                <input class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox" />$0 - $500</input>
                             </li>
                             <li>
                                 <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" />$500 - $1000</label>
                             </li>
+
+                            <li><input
+                                {% if price in filtered_price %}
+                                    checked
+                                {% endif %}  
+                                  
+                                   name="price" value="1001" type="checkbox" onchange="this.form.submit()">                   <span>$0 - $500</span>
+                              </li>
+
+                              <li><input
+                                {% if price in filtered_price %}
+                                    checked
+                                {% endif %}  
+                                  
+                                   name="price" value="1002" type="checkbox" onchange="this.form.submit()">                   <span>$500 - $1000</span>
+                              </li>
                       
                         </ul>
                     </div>
@@ -143,19 +159,12 @@ ul.pagination  {
                     <div class="col-12">
                         <!-- Shop Top -->
 
-                        <div class="col-lg-8 col-md-7 col-12">
+                        <div class="col-lg-12 col-md-12 col-12">
                             <div class="search-bar-top">
                                 <div class="search-bar">
-                                    <!-- <select>
-                                        <option selected="selected">All Category</option>
-                                        <option>watch</option>
-                                        <option>mobile</option>
-                                        <option>kid’s item</option>
-                                    </select> -->
-                                    <!-- <form action="{% url 'shop' %}" method="get"> -->
-                                        <input style="width: 475px;" name="search" placeholder="Search Products Here....." type="search" value="{{search}}">
-                                        <button  onclick="this.form.submit()" class="btnn"><i class="ti-search"></i></button>
-                                    <!-- </form> -->
+                                        <input style="width: 700px; " name="search" placeholder="Search Products Here....." type="search" value="{{search}}">
+
+                                           <button  onclick="this.form.submit()" class="btn"><i class="ti-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +223,7 @@ ul.pagination  {
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="product-details.html">{{item.title}}</a></h3>
+                                <h3><a href="{{item.get_absolute_url}}">{{item.title}}</a></h3>
                                 <div class="product-price">
                                    
                                     <span>${{item.price}}</span>

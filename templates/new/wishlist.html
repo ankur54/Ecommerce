@@ -30,13 +30,13 @@
 							{% for wishlist_item in object.items.all %}
 							<tr>
 								<td width="100"  height="100" class="image" data-title="No">
-									<a href="{{ wishlist_item.item.get_absolute_url  }}">
+									<a href="{{ wishlist_item.get_absolute_url  }}">
 
-										<img src="{{wishlist_item.image.url}}" alt="#">
+										<img class="img-thumbnail" src="{{wishlist_item.image.url}}" alt="#">
 									</a>
 								</td>
 								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href="{{ wishlist_item.item.get_absolute_url }}">{{ wishlist_item.title }}</a></p>
+									<p class="product-name"><a href="{{ wishlist_item.get_absolute_url }}">{{ wishlist_item.title }}</a></p>
 								</td>
 								<td class="price" data-title="Price"><span>
 								         {% if wishlist_item.discount_price %}

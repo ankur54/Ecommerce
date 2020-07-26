@@ -88,7 +88,9 @@
 							{% if request.user.is_authenticated %}
 							
 						<div class="sinlge-bar">
-							<a href="{% url 'wishlist' %}" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+							<a href="{% url 'wishlist' %}" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i>
+								<!-- <span class="total-count">{{ request.user|wishlist_item_count }}</span> -->
+							</a>
 						</div>
 
 						
