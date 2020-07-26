@@ -117,28 +117,24 @@ ul.pagination  {
                     <!-- Shop By Price -->
                     <div class="single-widget range">
                         <h3 class="title">Shop by Price</h3>
-                        <div class="price-filter">
-                            <!-- <div class="price-filter-inner">
+                        <!-- <div class="price-filter">
+                            <div class="price-filter-inner">
                                 <div id="slider-range"></div>
                                 <div class="price_slider_amount">
                                     <div class="label-input"><span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price" /></div>
-                                </div>
-                            </div> -->
-                        </div>
-                        <ul class="check-box-list">
-                            <li>
-                                <input class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox" />$0 - $500</input>
-                            </li>
-                            <li>
-                                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" />$500 - $1000</label>
-                            </li>
 
+                                </div>
+                            </div>
+                        </div> -->
+                        <ul class="check-box-list">
+                       
+<!-- 
                             <li><input
                                 {% if price in filtered_price %}
                                     checked
                                 {% endif %}  
                                   
-                                   name="price" value="1001" type="checkbox" onchange="this.form.submit()">                   <span>$0 - $500</span>
+                                   name="price" value="500" type="checkbox" onchange="this.form.submit()">                   <span>$0 - $500</span>
                               </li>
 
                               <li><input
@@ -146,9 +142,18 @@ ul.pagination  {
                                     checked
                                 {% endif %}  
                                   
-                                   name="price" value="1002" type="checkbox" onchange="this.form.submit()">                   <span>$500 - $1000</span>
+                                   name="price" value="1000" type="checkbox" onchange="this.form.submit()">                   <span>$500 - $1000</span>
+                              </li> -->
+
+                              <li>
+                                  <span> $ <input name="lower" value="{{lower}}" style="width:60px;" type="number"></span>
+                                  -   
+                                  <span> $ <input name="upper" style="width:60px;" value="{{upper}}" type="number"></span>
                               </li>
-                      
+                      <br>
+                              <li class="text-center">
+                                  <input  type="submit"  value="search" class="btn"/>
+                              </li>
                         </ul>
                     </div>
                     <!--/ End Shop By Price -->
