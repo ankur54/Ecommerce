@@ -127,14 +127,12 @@ ul.pagination  {
                         </div>
                         <ul class="check-box-list">
                             <li>
-                                <label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox" />$20 - $50</label>
+                                <label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox" />$0 - $500</label>
                             </li>
                             <li>
-                                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" />$50 - $100</label>
+                                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" />$500 - $1000</label>
                             </li>
-                            <li>
-                                <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox" />$100 - $250</label>
-                            </li>
+                      
                         </ul>
                     </div>
                     <!--/ End Shop By Price -->
@@ -144,6 +142,23 @@ ul.pagination  {
                 <div class="row">
                     <div class="col-12">
                         <!-- Shop Top -->
+
+                        <div class="col-lg-8 col-md-7 col-12">
+                            <div class="search-bar-top">
+                                <div class="search-bar">
+                                    <!-- <select>
+                                        <option selected="selected">All Category</option>
+                                        <option>watch</option>
+                                        <option>mobile</option>
+                                        <option>kid’s item</option>
+                                    </select> -->
+                                    <!-- <form action="{% url 'shop' %}" method="get"> -->
+                                        <input style="width: 475px;" name="search" placeholder="Search Products Here....." type="search" value="{{search}}">
+                                        <button  onclick="this.form.submit()" class="btnn"><i class="ti-search"></i></button>
+                                    <!-- </form> -->
+                                </div>
+                            </div>
+                        </div>
 
                     
                             <div class="shop-top">
@@ -201,13 +216,10 @@ ul.pagination  {
                             <div class="product-content">
                                 <h3><a href="product-details.html">{{item.title}}</a></h3>
                                 <div class="product-price">
-                                    {% if item.discount_price %}
-                                    <span style="text-decoration: line-through;">${{item.price}}</span>
-                                    <span>${{item.discount_price}}</span>
-                                    {% else %}
+                                   
                                     <span>${{item.price}}</span>
 
-                                    {% endif %}
+                                   
                                 </div>
                             </div>
                         </div>

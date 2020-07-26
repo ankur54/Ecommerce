@@ -58,7 +58,8 @@ def complete_order(request):
 
 def shop_grid_new(request):
     print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-  
+    
+
 
     if request.GET.get('number') is None:
         num = 10
@@ -71,25 +72,77 @@ def shop_grid_new(request):
         sort_by = 'price'
     elif request.GET.get('sort-by') == 'Name':
         sort_by = 'title'
-    
-    
-    if 'color' in request.GET or 'category' not in request.GET:
-        filtered_colors = tuple( request.GET.getlist('color'))
-        filtered_categories=()
-        print('filtered_colors = ', filtered_colors)
-        items = Item.objects.filter(color__color_name__in = filtered_colors).order_by(sort_by)
-    
-    elif 'color' in request.GET and 'category' in request.GET:
-        print('83')
-        filtered_colors = tuple( request.GET.getlist('color'))
-        filtered_categories = tuple( request.GET.getlist('category'))
-        print('filtered_categories = ', filtered_categories)
-        print('filtered_colors = ', filtered_colors)
-        items = Item.objects.filter(color__color_name__in = filtered_colors).filter(category__name__in = filtered_categories).order_by(sort_by)
+
+    if 'search' in request.GET:
+        search = request.GET.get('search')  
+        results = Item.objects.filter(title__icontains=search)
+        if 'color' in request.GET and 'category' not in request.GET:
+            print('77')
+            filtered_colors = tuple( request.GET.getlist('color'))
+            filtered_categories=()
+            print('filtered_colors = ', filtered_colors)
+            items = results.filter(color__color_name__in = filtered_colors).order_by(sort_by)
+        
+        if 'color' not in request.GET and 'category'  in request.GET:
+            print('77')
+            filtered_colors = tuple(Item.objects.values('color__color_name').distinct())
+            filtered_categories = tuple( request.GET.getlist('category'))
+            print('filtered_categories = ', filtered_categories)
+            items = results.filter(category__name__in = filtered_categories).order_by(sort_by)
+
+        elif 'color' not in request.GET and 'category' not in request.GET:
+            print('91')
+            items = results.all().order_by(sort_by)
+            filtered_colors = tuple(Item.objects.values('color__color_name').distinct())
+            filtered_categories = ()
+        
+        elif 'color' in request.GET and 'category' in request.GET:
+            print('97')
+            filtered_colors = tuple( request.GET.getlist('color'))
+            filtered_categories = tuple( request.GET.getlist('category'))
+            print('filtered_categories = ', filtered_categories)
+            print('filtered_colors = ', filtered_colors)
+            items = results.filter(color__color_name__in = filtered_colors).filter(category__name__in = filtered_categories).order_by(sort_by)
+
+
     else:
-        items = Item.objects.all().order_by(sort_by)
-        filtered_categories = ()
-        filtered_colors = ()
+        search = ''
+        if 'color' in request.GET and 'category' not in request.GET:
+            print('77')
+            filtered_colors = tuple( request.GET.getlist('color'))
+            filtered_categories=()
+            print('filtered_colors = ', filtered_colors)
+            items = Item.objects.filter(color__color_name__in = filtered_colors).order_by(sort_by)
+            # items = results.filter(color__color_name__in = filtered_colors).order_by(sort_by)
+        
+        if 'color' not in request.GET and 'category'  in request.GET:
+            print('77')
+            filtered_colors = tuple(Item.objects.values('color__color_name').distinct())
+            filtered_categories = tuple( request.GET.getlist('category'))
+            print('filtered_categories = ', filtered_categories)
+            items = Item.objects.filter(category__name__in = filtered_categories).order_by(sort_by)
+
+        elif 'color' not in request.GET and 'category' not in request.GET:
+            print('91')
+            items = Item.objects.all().order_by(sort_by)
+            filtered_categories = ()
+            filtered_colors = tuple(Item.objects.values('color__color_name').distinct())
+
+        
+        elif 'color' in request.GET and 'category' in request.GET:
+            print('97')
+            filtered_colors = tuple( request.GET.getlist('color'))
+            filtered_categories = tuple( request.GET.getlist('category'))
+            print('filtered_categories = ', filtered_categories)
+            print('filtered_colors = ', filtered_colors)
+            items = Item.objects.filter(color__color_name__in = filtered_colors).filter(category__name__in = filtered_categories).order_by(sort_by)
+
+    # elif 'color' not in request.GET or 'category' not in request.GET:
+    #     print('96')
+    #     items = Item.objects.all().order_by(sort_by)
+    #     filtered_categories = ()
+    #     filtered_colors = ()
+    
 
     
  
@@ -113,7 +166,7 @@ def shop_grid_new(request):
     except EmptyPage:
         items = paginator.page(paginator.num_pages)
 
-    context = {'items': items, 'categories': categories,
+    context = {'items': items, 'categories': categories,'search':search,
                'colors': colors, 'number': num, 'sort_by': sort_by ,'filtered_colors':filtered_colors,'filtered_categories':filtered_categories}
     print('======={context=======', context)
     return render(request, 'shop-grid.html', context)
