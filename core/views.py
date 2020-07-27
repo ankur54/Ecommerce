@@ -445,12 +445,9 @@ def remove_from_compare(request, slug):
 
 class ItemListView(View):
     def get(self, *args, **kwargs):
-        # try:
-        #     items = Item.objects.all()
-        # except ObjectDoesNotExist:
-        #     pass
-        # context = {'items':items}
-        return render(self.request, 'index_new.html')
+        items = Item.objects.all().order_by('-id')[:10]
+        context = {'items':items}
+        return render(self.request, 'index_new.html',context)
 
 
 
