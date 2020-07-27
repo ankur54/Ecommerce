@@ -819,7 +819,7 @@ def add_one_item_to_cart(request, slug):
     return redirect('order-summary')
 
 
-
+ 
 @ login_required
 def remove_from_cart(request, slug):
     item=get_object_or_404(Item, slug=slug)
