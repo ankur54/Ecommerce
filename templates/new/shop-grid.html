@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block extra_styles %}
-
+{% load cart_template_tags %}
 <!-- <style>
 
 ul.pagination li{
@@ -217,9 +217,9 @@ ul.pagination  {
                                 </a>
                                 <div class="button-head">
                                     <div class="product-action">
-                                        <a href="{{item.get_add_to_cart_url_from_shop}}"><i class="ti-shopping-cart"></i><span>Add to Cart</span></a>
+                                        <a href="{{item.get_add_to_cart_url_from_shop}}"><i class="ti-shopping-cart" style="{% if request.user|is_item_in_cart:item %}color:red;{% endif %}"></i><span>Add to Cart</span></a>
                                         <!-- <a data-toggle="modal" data-target="#exampleModal" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> -->
-                                        <a href="{{ item.get_add_to_wishlist_url }}"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
+                                        <a href="{{ item.get_add_to_wishlist_url }}"><i class="ti-heart" style="{% if request.user|is_item_in_wishlist:item.id %}color:red;{% endif %}"></i><span>Add to Wishlist</span></a>
                                         <a href="{{ item.get_add_to_compare_url }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                     </div>
                                     <div class="product-action-2">

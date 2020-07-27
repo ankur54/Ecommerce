@@ -386,9 +386,9 @@ def search_products(request):
 class OrderSummary(View):
     def get(self, *args, **kwargs):
         try:
-            order=Order.objects.get(user=self.request.user, ordered=False)
+            order = Order.objects.get(user=self.request.user, ordered=False)
         except ObjectDoesNotExist:
-            return redirect('/')
+            order = ''
         # return render(self.request, 'order_summary.html', context)
         return render(self.request, 'cart.html', {'object': order})
 

@@ -86,9 +86,9 @@
 								{% endif %}
 									
 								
-								</td> -->
+								</td> --> 
 								<td class="action" data-title="Remove">
-								<a href="{{order_item.item.get_whole_item_from_cart_url}}"> <i class="ti-trash remove-icon"></i></a>
+								<a href="{{order_item.item.get_remove_from_cart_url}}"> <i class="ti-trash remove-icon"></i></a>
 								</td>
 							</tr>
 
@@ -153,7 +153,11 @@
 										</li>
 									</ul>
 									<div class="button5">
+										{% if object %}
 										<a href="{% url 'complete-order' %}" class="btn">Order</a>
+										{% else %}
+										<button class="btn" style="opacity:0.6;">Order</button>
+										{% endif %}
 										<a href="{% url 'shop' %}" class="btn">Continue shopping</a>
 									</div>
 								</div>

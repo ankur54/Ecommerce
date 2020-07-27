@@ -12,6 +12,22 @@ def cart_item_count(user):
     else:
         return 0
 
+@register.filter
+def is_item_in_cart(user,item):
+    if user.is_authenticated:
+        return len(OrderItem.objects.filter(user=user,item=item,ordered=False)) != 0
+    else:
+        return 0
+
+@register.filter
+def is_item_in_wishlist(user,itemId):
+    if user.is_authenticated:
+        return len(WishList.objects.filter(user=user,items__id=itemId)) != 0
+    else:
+        return 0
+
+
+
 
 @register.filter
 def wishlist_item_count(user):
