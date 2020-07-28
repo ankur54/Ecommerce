@@ -107,10 +107,12 @@
 							{% for item in items %}
 								<div class="single-product">
 								<div class="product-img">
-									<a href="{% url 'shop'%} ">
+									<a href="{% url 'product_detail' item.slug %} ">
 										<img class="default-img" style="height:300px !important; width:450px !important;" src="{{item.image.url}}" alt="#">
 										<img class="hover-img" style="height:300px !important; width:450px !important;" src="{{item.image.url}}" alt="#">
 										<!-- <span class="out-of-stock">Hot</span> -->
+										<h3 style="font-size:14px;font-weight:500;margin:0;margin-bottom:5px;">{{item.title}}</h3>
+										<h3 style="font-size:14px;font-weight:500;margin:0;">${{item.price}}</h3>
 									</a>
 								</div>
 								</div>
