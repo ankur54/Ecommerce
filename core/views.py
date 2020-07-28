@@ -55,15 +55,7 @@ def complete_order(request):
 
 
 def shop_grid_new(request):
-    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-
-    # if 'upper' in request.GET:
-    #     upper = int(request.GET.get('upper')
-
-
-    
-
-  
+    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')  
 
     if request.GET.get('number') is None:
         num=10
@@ -177,7 +169,7 @@ def shop_grid_new(request):
         lower_val=0
     
     # items = Item.objects.filter(price__gte=lower_val,price__lte=upper_val)
-    items = items.filter(price__gte=lower_val,price__lte=upper_val)
+    items = items.filter(price__gte=lower_val,price__lte=upper_val).order_by(sort_by)
 
 
     
@@ -189,10 +181,8 @@ def shop_grid_new(request):
 
     colors=tuple(Item.objects.values('color__color_name').distinct())
     colors1=tuple(Item.objects.values_list('color__color_name').distinct())
-    print('colors = ', colors)
-    print('colors1 = ', colors1)
 
-
+    print(items.order_by('title'))
     paginator=Paginator(items, num)
     try:
         items=paginator.page(page)
@@ -204,7 +194,6 @@ def shop_grid_new(request):
     context={'items': items, 'categories': categories, 'search': search,
                'colors': colors, 'number': num, 'sort_by': sort_by, 'filtered_colors': filtered_colors, 'filtered_categories': filtered_categories,
                'upper':upper_val,'lower':lower_val}
-    print('======={context=======', context)
     return render(request, 'shop-grid.html', context)
 
 def shop_by_color(request, value):
