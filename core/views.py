@@ -58,7 +58,7 @@ def shop_grid_new(request):
     print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')  
 
     if request.GET.get('number') is None:
-        num=10
+        num=9
     else:
         num=int(request.GET.get('number'))
 
